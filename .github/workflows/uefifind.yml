@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2016
 
     steps:
     - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
     - name: CMake
       shell: bash
       working-directory: ${{runner.workspace}}/build/UEFIFind
-      run: cmake -T "v141_xp" -DU_STATIC_RT=YES $GITHUB_WORKSPACE/UEFIFind
+      run: cmake -G "Visual Studio 15 2017" -T "v141_xp" -DU_STATIC_RT=YES $GITHUB_WORKSPACE/UEFIFind
 
     - name: Build
       working-directory: ${{runner.workspace}}/build/UEFIFind
