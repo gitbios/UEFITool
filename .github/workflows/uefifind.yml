@@ -1,0 +1,39 @@
+name: UEFIFind
+
+on: 
+  push:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build/UEFIFind
+
+    - name: CMake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build/UEFIFind
+      run: cmake -T "v141_xp" \
+                 -D CMAKE_BUILD_TYPE=Release \
+                 -D CMAKE_CXX_FLAGS_RELEASE="/MT /O2 /Ob2 /D NDEBUG" \
+                 -D CMAKE_C_FLAGS_RELEASE="/MT /O2 /Ob2 /D NDEBUG \
+                 $GITHUB_WORKSPACE/UEFIFind
+
+    - name: Build
+      working-directory: ${{runner.workspace}}/build/UEFIFind
+      shell: bash
+      run: cmake --build .
+
+    - name: Compress
+      working-directory: ${{runner.workspace}}/build/UEFIFind
+      shell: bash
+      run: 7z a ../UEFIFind_latest_win32.zip ./Release/UEFIFind.exe
+      
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: UEFIFind_latest_win32.zip
+        path: ${{runner.workspace}}/build/UEFIFind_latest_win32.zip
