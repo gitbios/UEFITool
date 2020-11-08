@@ -2,6 +2,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 PROJECT(UEFIFind)
 
+SET(MSVC_STATIC ON CACHE STRING "Use static runtimes with MSVC" FORCE)
+
 SET(PROJECT_SOURCES
  uefifind_main.cpp
  uefifind.cpp
