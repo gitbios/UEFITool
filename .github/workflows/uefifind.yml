@@ -22,14 +22,9 @@ jobs:
       working-directory: ${{runner.workspace}}/build/UEFIFind
       shell: bash
       run: cmake --build . --config Release
-
-    - name: Compress
-      working-directory: ${{runner.workspace}}/build/UEFIFind
-      shell: bash
-      run: 7z a ../UEFIFind_latest_win32.zip ./Release/UEFIFind.exe
       
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: UEFIFind_latest_win32.zip
-        path: ${{runner.workspace}}/build/UEFIFind_latest_win32.zip
+        path: ${{runner.workspace}}/build/UEFIFind/Release/UEFIFind.exe

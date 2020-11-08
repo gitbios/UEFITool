@@ -2,7 +2,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 PROJECT(UEFIFind)
 
-SET(MSVC_STATIC ON CACHE STRING "Use static runtimes with MSVC" FORCE)
+IF(MSVC)
+    ADD_COMPILE_OPTIONS(
+        $<$<CONFIG:>:/MT> #---------|
+        $<$<CONFIG:Debug>:/MTd> #---|-- Statically link the runtime libraries
+        $<$<CONFIG:Release>:/MT> #--|
+    )
+ENDIF()
 
 SET(PROJECT_SOURCES
  uefifind_main.cpp
