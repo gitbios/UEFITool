@@ -2,13 +2,17 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 PROJECT(UEFIFind)
 
-IF(MSVC)
+OPTION(U_STATIC_RT "Statically link the runtime libraries" OFF)
+
+IF(U_STATIC_RT)
+  IF(MSVC)
     ADD_COMPILE_OPTIONS(
-        $<$<CONFIG:>:/MT> #---------|
-        $<$<CONFIG:Debug>:/MTd> #---|-- Statically link the runtime libraries
-        $<$<CONFIG:Release>:/MT> #--|
+      $<$<CONFIG:>:/MT>
+      $<$<CONFIG:Debug>:/MTd>
+      $<$<CONFIG:Release>:/MT>
     )
-ENDIF()
+  ENDIF(MSVC)
+ENDIF(U_STATIC_RT)
 
 SET(PROJECT_SOURCES
  uefifind_main.cpp

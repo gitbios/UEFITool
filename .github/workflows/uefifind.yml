@@ -16,7 +16,7 @@ jobs:
     - name: CMake
       shell: bash
       working-directory: ${{runner.workspace}}/build/UEFIFind
-      run: cmake -T "v141_xp" $GITHUB_WORKSPACE/UEFIFind
+      run: cmake -T "v141_xp" -DU_STATIC_RT=YES $GITHUB_WORKSPACE/UEFIFind
 
     - name: Build
       working-directory: ${{runner.workspace}}/build/UEFIFind
@@ -26,5 +26,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: UEFIFind_latest_win32.zip
+        name: UEFIFind_latest_win32
         path: ${{runner.workspace}}/build/UEFIFind/Release/UEFIFind.exe
