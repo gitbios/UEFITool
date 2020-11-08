@@ -19,7 +19,7 @@ jobs:
       run: cmake -T "v141_xp" \
                  -D CMAKE_BUILD_TYPE=Release \
                  -D CMAKE_CXX_FLAGS_RELEASE="/MT /O2 /Ob2 /D NDEBUG" \
-                 -D CMAKE_C_FLAGS_RELEASE="/MT /O2 /Ob2 /D NDEBUG \
+                 -D CMAKE_C_FLAGS_RELEASE="/MT /O2 /Ob2 /D NDEBUG" \
                  $GITHUB_WORKSPACE/UEFIFind
 
     - name: Build
