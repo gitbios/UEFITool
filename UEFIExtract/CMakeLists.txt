@@ -2,6 +2,18 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 PROJECT(UEFIExtract)
 
+OPTION(U_STATIC_RT "Statically link the runtime libraries" OFF)
+
+IF(U_STATIC_RT)
+  IF(MSVC)
+    ADD_COMPILE_OPTIONS(
+      $<$<CONFIG:>:/MT>
+      $<$<CONFIG:Debug>:/MTd>
+      $<$<CONFIG:Release>:/MT>
+    )
+  ENDIF(MSVC)
+ENDIF(U_STATIC_RT)
+
 SET(PROJECT_SOURCES
  uefiextract_main.cpp
  ffsdumper.cpp
