@@ -21,7 +21,7 @@ jobs:
     - name: Build
       working-directory: ${{runner.workspace}}/build/UEFIFind
       shell: bash
-      run: cmake --build .
+      run: cmake --build . --config Release
 
     - name: Compress
       working-directory: ${{runner.workspace}}/build/UEFIFind
