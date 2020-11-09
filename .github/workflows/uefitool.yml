@@ -14,10 +14,12 @@ jobs:
       run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
 
     - name: Get Qt
+      shell: bash
       working-directory: $GITHUB_WORKSPACE
       run: git clone https://github.com/LongSoft/qt-5.6.3-static-x86-msvc2017 qt
 
     - name: Unpack Qt
+      shell: bash
       working-directory: $GITHUB_WORKSPACE/qt
       run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o .. 
 
