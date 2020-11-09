@@ -1,4 +1,5 @@
 QT += core gui widgets
+QTPLUGIN.imageformats = -
 
 TARGET = UEFITool
 TEMPLATE = app
@@ -6,8 +7,6 @@ DEFINES += "U_ENABLE_FIT_PARSING_SUPPORT"
 DEFINES += "U_ENABLE_NVRAM_PARSING_SUPPORT"
 DEFINES += "U_ENABLE_ME_PARSING_SUPPORT"
 DEFINES += "U_ENABLE_GUID_DATABASE_SUPPORT"
-
-QTPLUGIN.imageformats = -
 
 HEADERS += uefitool.h \
  searchdialog.h \
@@ -128,3 +127,4 @@ ICONFILE.files = icons/uefitool.icns
 ICONFILE.path = Contents/Resources
 QMAKE_BUNDLE_DATA += ICONFILE
 QMAKE_INFO_PLIST = Info.plist
+QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
