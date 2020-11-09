@@ -30,6 +30,12 @@ jobs:
       working-directory: ${{runner.workspace}}/build/UEFITool
       run: $GITHUB_WORKSPACE/qt-5.6.3-static-x86-msvc2017/bin/qmake.exe ../../UEFITool/UEFITool/
 
+    - name: Upload Makefile
+      uses: actions/upload-artifact@v2
+      with:
+        name: Makefile.release
+        path: ${{runner.workspace}}/build/UEFITool/Makefile.release
+  
     - name: Build
       working-directory: ${{runner.workspace}}/build/UEFITool
       shell: cmd
