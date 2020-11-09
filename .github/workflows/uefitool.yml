@@ -20,7 +20,7 @@ jobs:
     - name: Unpack Qt
       shell: bash
       working-directory: qt
-      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o..
+      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o../..
 
     - name: Create Build Directory
       run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
@@ -28,7 +28,7 @@ jobs:
     - name: Qmake
       shell: bash
       working-directory: ${{runner.workspace}}/build/UEFITool
-      run: $GITHUB_WORKSPACE/qt-5.6.3-static-x86-msvc2017/bin/qmake.exe ../../UEFITool/UEFITool/
+      run: ../../qt-5.6.3-static-x86-msvc2017/bin/qmake.exe ../../UEFITool/UEFITool/
 
     - name: Upload Makefile
       uses: actions/upload-artifact@v2
