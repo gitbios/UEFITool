@@ -12,17 +12,19 @@ jobs:
 
     - name: Create Build Environment
       shell: bash
-      run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool && cmake -E make_directory $GITHUB_WORKSPACE/qt
+      run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
 
     - name: Get Qt
-      shell: bash
-      working-directory: ${{runner.workspace}}/build/UEFITool
-      run: git clone https://github.com/LongSoft/qt-5.6.3-static-x86-msvc2017
+      uses: actions/checkout@master
+      with:
+        repository: LongSoft/qt-5.6.3-static-x86-msvc2017
+        path: $GITHUB_WORKSPACE/qt
+        lfs: true
 
     - name: Unpack Qt
       shell: bash
-      working-directory: ${{runner.workspace}}/build/UEFITool/qt-5.6.3-static-x86-msvc2017
-      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o $GITHUB_WORKSPACE
+      working-directory: $GITHUB_WORKSPACE/qt
+      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o ..
 
     - name: Qmake
       shell: bash
