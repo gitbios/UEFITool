@@ -1,0 +1,36 @@
+name: UEFITool
+
+on: 
+  push:
+
+jobs:
+  build:
+    runs-on: windows-2016
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
+
+    - name: Get Qt
+      working-directory: $GITHUB_WORKSPACE
+      run: git clone https://github.com/LongSoft/qt-5.6.3-static-x86-msvc2017 $GITHUB_WORKSPACE/qt
+
+    - name: Unpack Qt
+      working-directory: $GITHUB_WORKSPACE/qt
+      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o .. 
+
+    - name: Qmake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build/UEFITool
+      run: $GITHUB_WORKSPACE/qt-5.6.3-static-x86-msvc2017/bin/qmake .
+
+    - name: Build
+      working-directory: ${{runner.workspace}}/build/UEFITool
+      shell: cmd
+      run: | 
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
+          nmake release
+
+
