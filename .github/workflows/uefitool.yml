@@ -16,13 +16,13 @@ jobs:
 
     - name: Get Qt
       shell: bash
-      working-directory: $GITHUB_WORKSPACE/qt
+      working-directory: ${{runner.workspace}}/build/UEFITool
       run: git clone https://github.com/LongSoft/qt-5.6.3-static-x86-msvc2017
 
     - name: Unpack Qt
       shell: bash
-      working-directory: $GITHUB_WORKSPACE/qt/qt-5.6.3-static-x86-msvc2017
-      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o ../.. 
+      working-directory: ${{runner.workspace}}/build/UEFITool/qt-5.6.3-static-x86-msvc2017
+      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o $GITHUB_WORKSPACE
 
     - name: Qmake
       shell: bash
