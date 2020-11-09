@@ -26,5 +26,5 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: UEFIFind_latest_win32
+        name: UEFIFind_win32
         path: ${{runner.workspace}}/build/UEFIFind/Release/UEFIFind.exe

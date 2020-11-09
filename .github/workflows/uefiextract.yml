@@ -26,5 +26,5 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: UEFIExtract_latest_win32
+        name: UEFIExtract_win32
         path: ${{runner.workspace}}/build/UEFIExtract/Release/UEFIExtract.exe

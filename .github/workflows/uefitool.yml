@@ -20,7 +20,7 @@ jobs:
     - name: Unpack Qt
       shell: bash
       working-directory: qt
-      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o../..
+      run: 7z x qt-5.6.3-static-x86-msvc2017.7z -o../..
 
     - name: Create Build Directory
       run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
@@ -30,6 +30,12 @@ jobs:
       working-directory: ${{runner.workspace}}/build/UEFITool
       run: ../../qt-5.6.3-static-x86-msvc2017/bin/qmake.exe ../../UEFITool/UEFITool/
   
+    - name: Upload Makefile
+      uses: actions/upload-artifact@v2
+      with:
+        name: Makefile.release
+        path: ${{runner.workspace}}/build/UEFITool/Makefile.release
+
     - name: Build
       working-directory: ${{runner.workspace}}/build/UEFITool
       shell: cmd
@@ -40,5 +46,5 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: UEFITool_latest_win32
+        name: UEFITool_win32
         path: ${{runner.workspace}}/build/UEFITool/release/UEFITool.exe
