@@ -10,26 +10,23 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Create Build Environment
-      shell: bash
-      run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
-
     - name: Get Qt
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
       with:
         repository: LongSoft/qt-5.6.3-static-x86-msvc2017
-        path: $GITHUB_WORKSPACE/qt
+        path: qt
         lfs: true
 
     - name: Unpack Qt
       shell: bash
-      working-directory: $GITHUB_WORKSPACE/qt
-      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o ..
+      working-directory: qt
+      run: 7z x qt-5.6.3-static-x86-msvc2017.zip -o..
+
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
 
     - name: Qmake
-      shell: bash
-      working-directory: ${{runner.workspace}}/build/UEFITool
-      run: $GITHUB_WORKSPACE/qt-5.6.3-static-x86-msvc2017/bin/qmake .
+      run: qt-5.6.3-static-x86-msvc2017/bin/qmake.exe ${{runner.workspace}}/build/UEFITool
 
     - name: Build
       working-directory: ${{runner.workspace}}/build/UEFITool
