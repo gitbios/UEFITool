@@ -1,5 +1,4 @@
-QT += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui widgets
 
 TARGET = UEFITool
 TEMPLATE = app
@@ -7,6 +6,8 @@ DEFINES += "U_ENABLE_FIT_PARSING_SUPPORT"
 DEFINES += "U_ENABLE_NVRAM_PARSING_SUPPORT"
 DEFINES += "U_ENABLE_ME_PARSING_SUPPORT"
 DEFINES += "U_ENABLE_GUID_DATABASE_SUPPORT"
+
+QTPLUGIN.imageformats = -
 
 HEADERS += uefitool.h \
  searchdialog.h \
