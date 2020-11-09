@@ -573,7 +573,7 @@ void UEFITool::remove()
 void UEFITool::about()
 {
     QMessageBox::about(this, tr("About UEFITool"), tr(
-        "Copyright (c) 2019, Nikolaj Schlej.<br>"
+        "Copyright (c) 2020, Nikolaj Schlej.<br>"
         "Program icon made by <a href=https://www.behance.net/alzhidkov>Alexander Zhidkov</a>.<br>"
         "The program uses QHexEdit2 library made by <a href=https://github.com/Simsys/>Simsys</a>.<br>"
         "Qt-less engine is using Bstrlib made by <a href=https://github.com/websnarf/>Paul Hsieh</a>.<br><br>"
