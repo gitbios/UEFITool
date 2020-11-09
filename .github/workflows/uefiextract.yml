@@ -1,0 +1,30 @@
+name: UEFIExtract
+
+on: 
+  push:
+
+jobs:
+  build:
+    runs-on: windows-2016
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create Build Directory
+      run: cmake -E make_directory ${{runner.workspace}}/build/UEFIExtract
+
+    - name: CMake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build/UEFIExtract
+      run: cmake -G "Visual Studio 15 2017" -T "v141_xp" -DU_STATIC_RT=YES ../../UEFITool/UEFIExtract/
+
+    - name: Build
+      working-directory: ${{runner.workspace}}/build/UEFIExtract
+      shell: bash
+      run: cmake --build . --config Release
+      
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: UEFIExtract_latest_win32
+        path: ${{runner.workspace}}/build/UEFIExtract/Release/UEFIExtract.exe
