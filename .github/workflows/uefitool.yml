@@ -26,7 +26,9 @@ jobs:
       run: cmake -E make_directory ${{runner.workspace}}/build/UEFITool
 
     - name: Qmake
-      run: qt-5.6.3-static-x86-msvc2017/bin/qmake.exe ${{runner.workspace}}/build/UEFITool
+      shell: bash
+      working-directory: ${{runner.workspace}}/build/UEFITool
+      run: $GITHUB_WORKSPACE/qt-5.6.3-static-x86-msvc2017/bin/qmake.exe ${{runner.workspace}}/UEFITool/UEFITool.pro
 
     - name: Build
       working-directory: ${{runner.workspace}}/build/UEFITool
